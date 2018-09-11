@@ -13,7 +13,7 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('Projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->boolean('status');
@@ -27,6 +27,6 @@ class CreateProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('Projects');
     }
 }

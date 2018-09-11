@@ -13,7 +13,7 @@ class CreateTimeRegistrationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('time-registrations', function (Blueprint $table) {
+        Schema::create('Time-registrations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id');
             $table->dateTime('start_time');
@@ -28,6 +28,6 @@ class CreateTimeRegistrationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('time-registrations');
+        Schema::dropIfExists('Time-registrations');
     }
 }
