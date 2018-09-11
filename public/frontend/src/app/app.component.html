@@ -1,68 +1,76 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6">
-        <h1>TimeTracker</h1>
-  
-        <hr>
-        <form [formGroup] = "formdata" (ngSubmit) = "newProject(formdata.value)">
-          <div class="row">
-            <div class="col-sm-8"><input class="form-control" type = "text" name = "title" placeholder = "New Project (min. two letters)" formControlName = "title" /></div>
-            <div class="col-sm-4"><input class="btn btn-primary" type = "submit" [disabled] = "!formdata.valid" value = "Add" /></div>
-          </div>
-        </form>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <h1>TimeTracker</h1>
+
+      <hr>
+      <form [formGroup]="formdata" (ngSubmit)="newProject(formdata.value)">
+        <div class="row">
+          <div class="col-sm-8"><input class="form-control" type="text" name="title" placeholder="New Project (min. two letters)"
+              formControlName="title" /></div>
+          <div class="col-sm-4"><input class="btn btn-primary" type="submit" [disabled]="!formdata.valid" value="Add" /></div>
+        </div>
+      </form>
+      <div class="py-2">
         <ngb-alert *ngIf="successMessage" type="success" [dismissible]="false">{{ successMessageText }}</ngb-alert>
         <ngb-alert *ngIf="errorMessage" type="warning" [dismissible]="false">{{ errorMessageText }}</ngb-alert>
+      </div>
+      <hr>
+      <div *ngIf="Projects && Projects.length > 0">
+        <h2>{{mainTitle}}</h2>
         <hr>
-        <div *ngIf="Projects && Projects.length > 0">
-          <h2>{{mainTitle}}</h2>
-          <hr>
-          <div>
-            <ul class="list-group">
-  
-              <li class="list-group-item" *ngFor="let Project of Projects" [style.text-decoration]="Project.status == 1 ? 'line-through' : ''">
-  
-                <input type="text" [(ngModel)]="id" hidden>
-                <input type="text" (keyup.enter)="updateProject(id)" class="custom-input" *ngIf="Project.id == index" [(ngModel)]="selectedProject">
-                <span *ngIf="Project.id === index && isInEdit">This title is not unique</span>
-                <div *ngIf="Project.id === index" class="align-right" role="group" aria-label="...">
-                    <button type="button" (click)="updateProject(id)" class="btn btn-secondary"> <i class="fa fa-save"></i></button>
-               </div>
-  
-  
-                <span *ngIf="Project.id !== index">{{Project.title}}</span>
-  
-                <div *ngIf="Project.status !== 3" class="align-right">
-                  <div *ngIf="Project.id !== index" class="btn-group" role="group" aria-label="...">
-                    <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)" class="btn btn-secondary"><i class="fa fa-comment"></i></button>
-                    <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)" class="btn btn-secondary"><i class="fa fa-check"></i> </button>
-                    <button type="button" [style.display]="Project.status == 0 ? 'none' : '' " (click)="openProject(Project)" class="btn btn-secondary"> <i class="fa fa-refresh"></i></button>
-                    <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="editProject(Project)" class="btn btn-secondary"><i class="fa fa-edit"></i></button>
-                    <button type="button" (click)="closeProject(Project)" class="btn btn-danger"> <i class="fa fa-remove"></i></button>
-                  </div>
+        <div>
+          <ul class="list-group">
+
+            <li class="list-group-item" *ngFor="let Project of Projects" [style.text-decoration]="Project.status == 1 ? 'line-through' : ''">
+
+              <input type="text" [(ngModel)]="id" hidden>
+              <input type="text" (keyup.enter)="updateProject(id)" class="custom-input" *ngIf="Project.id == index"
+                [(ngModel)]="selectedProject">
+              <span *ngIf="Project.id === index && isInEdit">This title is not unique</span>
+              <div *ngIf="Project.id === index" class="align-right" role="group" aria-label="...">
+                <button type="button" (click)="updateProject(id)" class="btn btn-secondary"> <i class="fa fa-save"></i></button>
+              </div>
+
+
+              <span *ngIf="Project.id !== index">{{Project.title}}</span>
+
+              <div *ngIf="Project.status !== 3" class="align-right">
+                <div *ngIf="Project.id !== index" class="btn-group" role="group" aria-label="...">
+                  <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)"
+                    class="btn btn-secondary"><i class="fa fa-comment"></i></button>
+                  <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)"
+                    class="btn btn-secondary"><i class="fa fa-check"></i> </button>
+                  <button type="button" [style.display]="Project.status == 0 ? 'none' : '' " (click)="openProject(Project)"
+                    class="btn btn-secondary"> <i class="fa fa-refresh"></i></button>
+                  <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="editProject(Project)"
+                    class="btn btn-secondary"><i class="fa fa-edit"></i></button>
+                  <button type="button" (click)="closeProject(Project)" class="btn btn-danger"> <i class="fa fa-remove"></i></button>
                 </div>
+              </div>
+            </li>
+          </ul>
+
+          <nav *ngIf="total_Project > per_page" aria-label="Page navigation">
+            <ul class="pagination">
+              <li *ngIf="disablePrev">
+                <a (click)="pageNumber(current_page - 1)" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li *ngFor="let number of last_page;let i = index"><a (click)="pageNumber(i+1)" [style.text-decoration]="current_page == i+1 ? 'line-through' : ''">{{
+                  i+1 }}</a></li>
+              <li *ngIf="disableNext">
+                <a (click)="pageNumber(current_page + 1)" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
               </li>
             </ul>
-  
-            <nav *ngIf="total_Project > per_page" aria-label="Page navigation">
-              <ul class="pagination">
-                <li *ngIf="disablePrev">
-                  <a (click)="pageNumber(current_page - 1)" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li *ngFor="let number of last_page;let i = index"><a (click)="pageNumber(i+1)" [style.text-decoration]="current_page == i+1 ? 'line-through' : ''">{{ i+1 }}</a></li>
-                <li *ngIf="disableNext">
-                  <a (click)="pageNumber(current_page + 1)" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-  
-          </div>
+          </nav>
+
         </div>
       </div>
     </div>
   </div>
-  
+</div>

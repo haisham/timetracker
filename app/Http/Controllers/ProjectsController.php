@@ -17,7 +17,7 @@ class ProjectsController extends Controller
         return response()->json($projects);
     }
 
-    public function createProject(Request $request){
+    public function addProject(Request $request){
         $this->validate($request, [
             'title' => 'required|unique:Projects|max:255',
         ]);

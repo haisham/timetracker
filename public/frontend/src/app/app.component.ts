@@ -54,6 +54,7 @@ export class AppComponent {
     this.errorMessage = false;
     this.getProjects();
   }
+
   getProjects() {
     var result = this._ProjectService.getProjects();
     result.subscribe((data) => {
@@ -69,8 +70,6 @@ export class AppComponent {
     });
 
   }
-
-
 
   newProject(projectData) {
     this.successMessage = false;
