@@ -21,12 +21,12 @@ class ProjectsController extends Controller
         $this->validate($request, [
             'title' => 'required|unique:Projects|max:255',
         ]);
-        $Project = new Project();
-        $Project->title = $request->get('title');
-        $Project->status = 0;
-        if($Project->save()){
-            $Projects = Project::paginate($this->page_length);
-            return response()->json($Projects);
+        $project = new Project();
+        $project->title = $request->get('title');
+        $project->status = 0;
+        if($project->save()){
+            $projects = Project::paginate($this->page_length);
+            return response()->json($projects);
         }else{
             $error = ['error'=>'true'];
             return response()->json($error);
