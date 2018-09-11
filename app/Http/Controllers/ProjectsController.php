@@ -14,7 +14,8 @@ class ProjectsController extends Controller
      */
     public function getAllProjects(){
         $projects = Project::paginate($this->page_length);
-        return response()->json($projects);
+        $response = ['success' => 'true', 'projects' => $projects];
+        return response()->json($response);
     }
 
     public function addProject(Request $request){
@@ -26,7 +27,8 @@ class ProjectsController extends Controller
         $project->status = 0;
         if($project->save()){
             $projects = Project::paginate($this->page_length);
-            return response()->json($projects);
+            $response = ['success' => 'true', 'projects' => $projects];
+            return response()->json($response);
         }else{
             $error = ['error'=>'true'];
             return response()->json($error);

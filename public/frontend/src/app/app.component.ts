@@ -58,6 +58,7 @@ export class AppComponent {
   getProjects() {
     var result = this._ProjectService.getProjects();
     result.subscribe((data) => {
+      console.log(data);
       this.last_page = Array(data.last_page);
       this._last_page = data.last_page;
       this.current_page = data.current_page;
@@ -77,7 +78,7 @@ export class AppComponent {
 
     let result = this._ProjectService.addProject(projectData);
     result.subscribe((data) => {
-      if (data.success === "true") {
+      if (data) {
         this.successMessage = true;
         this.successMessageText = "Project added!";
         this.current_page = data.current_page;
