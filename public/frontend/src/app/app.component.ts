@@ -57,16 +57,17 @@ export class AppComponent {
 
   getProjects() {
     var result = this._ProjectService.getProjects();
-    result.subscribe((data) => {
-      console.log(data);
-      this.last_page = Array(data.last_page);
-      this._last_page = data.last_page;
-      this.current_page = data.current_page;
-      this.per_page = data.per_page;
-      this.Projects = data.data;
-      this.disableNext = true;
-      this.disablePrev = false;
-      this.total_Project = data.total;
+    result.subscribe((response) => {
+      if (response.success === "true") {
+        this.last_page = Array(response.projects.last_page);
+        this._last_page = response.projects.last_page;
+        this.current_page = response.projects.current_page;
+        this.per_page = response.projects.per_page;
+        this.Projects = response.projects.data;
+        this.disableNext = true;
+        this.disablePrev = false;
+        this.total_Project = response.projects.total;
+      }
 
     });
 
@@ -77,19 +78,20 @@ export class AppComponent {
     this.errorMessage = false;
 
     let result = this._ProjectService.addProject(projectData);
-    result.subscribe((data) => {
-      if (data) {
+    result.subscribe((response) => {
+      if (response.success === "true") {
         this.successMessage = true;
         this.successMessageText = "Project added!";
-        this.current_page = data.current_page;
-        this.Projects = data.data;
+        this.current_page = response.projects.current_page;
+        this.Projects = response.projects.data;
         this.total_Project = this.total_Project + 1;
         this.title = '';
         this.validTitle = true;
-        this.last_page = Array(data.last_page);
-        this._last_page = data.last_page;
+        this.last_page = Array(response.projects.last_page);
+        this._last_page = response.projects.last_page;
         setTimeout(() => {
-          this.successMessageText = ""
+          this.successMessageText = "";
+          this.successMessage = false;
         }, 2000);
       } else {
         this.errorMessage = true;

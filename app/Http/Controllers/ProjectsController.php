@@ -30,7 +30,7 @@ class ProjectsController extends Controller
             $response = ['success' => 'true', 'projects' => $projects];
             return response()->json($response);
         }else{
-            $error = ['error'=>'true'];
+            $error = ['success'=>'false'];
             return response()->json($error);
         }
     }
