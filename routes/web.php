@@ -15,7 +15,7 @@ Route::get('/api', function () {
     return view('welcome');
 });
 
-Route::get('/api/projects', 'ProjectsController@index');
+Route::get('/api/projects', 'ProjectsController@getAllProjects');
 Route::post('/api/add-project', 'ProjectsController@createProject');
 Route::put('/api/close-project/{id}', 'ProjectsController@completeProject');
 Route::put('/api/open-project/{id}', 'ProjectsController@incompleteProject');
