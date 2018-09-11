@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1);
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
@@ -20,7 +20,7 @@ ini_set('display_errors', 1);
 */
 
 require __DIR__.'/../bootstrap/autoload.php';
-ini_set('display_errors', 1);
+
 /*
 |--------------------------------------------------------------------------
 | Turn On The Lights
@@ -34,7 +34,7 @@ ini_set('display_errors', 1);
 */
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
-ini_set('display_errors', 1);
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application
@@ -46,13 +46,13 @@ ini_set('display_errors', 1);
 | and wonderful application we have prepared for them.
 |
 */
-ini_set('display_errors', 1);
+
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
-ini_set('display_errors', 1);
+
 $response->send();
-ini_set('display_errors', 1);
+
 $kernel->terminate($request, $response);

@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Input;
 class ProjectsController extends Controller
 {
     private $page_length = 5;
-    //**
+    /**
      * getAllProjects
-     *
+     * A function to return all projects
      * @return json_encode
      */
     public function getAllProjects(){
