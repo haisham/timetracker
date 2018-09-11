@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProjectService } from './services/Project.service';
+import { ProjectService } from './services/project.service';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -81,35 +81,21 @@ export class AppComponent {
 
   }
 
-  completeProject(Project) {
+  closeProject(Project) {
     var result;
-    result = this._ProjectService.completeProject(Project);
+    result = this._ProjectService.closeProject(Project);
     result.subscribe((data) => {
       Project.status = 1;
     });
 
   }
 
-  incompleteProject(Project) {
+  openProject(Project) {
     var result;
-    result = this._ProjectService.incompleteProject(Project);
+    result = this._ProjectService.openProject(Project);
     result.subscribe((data) => {
       Project.status = 0;
     });
-  }
-
-  editProject(Project) {
-    console.log("Projectid" + Project.id);
-    this.index = Project.id;
-    this.selectedProject = Project.title;
-    this.id = Project.id;
-    this.isInEdit = false;
-  }
-
-  ProjectNotes(Project) {
-    //this.modalService.open(ProjectNotesComponent);
-    const modal = this._modalService.open(ProjectNotesComponent);
-    modal.componentInstance.Project = Project;
   }
 
   updateProject(id) {
@@ -135,20 +121,6 @@ export class AppComponent {
 
   }
 
-
-  deleteProject(Project) {
-    var result;
-    result = this._ProjectService.deleteProject(Project);
-    result.subscribe((data) => {
-      var index = this.Projects.indexOf(Project);
-      this.Projects.splice(index, 1);
-      this.Projects = data.data;
-      this.total_Project = data.total;
-      this.last_page = Array(data.last_page);
-      this._last_page = data.last_page;
-      this.current_page = data.current_page;
-    });
-  }
 
   pageNumber(_number) {
     this.current_page = _number;

@@ -34,11 +34,11 @@
   
                 <div *ngIf="Project.status !== 3" class="align-right">
                   <div *ngIf="Project.id !== index" class="btn-group" role="group" aria-label="...">
-                    <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="ProjectNotes(Project)" class="btn btn-secondary"><i class="fa fa-comment"></i></button>
-                    <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="completeProject(Project)" class="btn btn-secondary"><i class="fa fa-check"></i> </button>
-                    <button type="button" [style.display]="Project.status == 0 ? 'none' : '' " (click)="incompleteProject(Project)" class="btn btn-secondary"> <i class="fa fa-refresh"></i></button>
+                    <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)" class="btn btn-secondary"><i class="fa fa-comment"></i></button>
+                    <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)" class="btn btn-secondary"><i class="fa fa-check"></i> </button>
+                    <button type="button" [style.display]="Project.status == 0 ? 'none' : '' " (click)="openProject(Project)" class="btn btn-secondary"> <i class="fa fa-refresh"></i></button>
                     <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="editProject(Project)" class="btn btn-secondary"><i class="fa fa-edit"></i></button>
-                    <button type="button" (click)="deleteProject(Project)" class="btn btn-danger"> <i class="fa fa-remove"></i></button>
+                    <button type="button" (click)="closeProject(Project)" class="btn btn-danger"> <i class="fa fa-remove"></i></button>
                   </div>
                 </div>
               </li>

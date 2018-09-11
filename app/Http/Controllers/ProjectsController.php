@@ -1,7 +1,7 @@
 
 <?php
 namespace App\Http\Controllers;
-use App\Projects;
+use App\Project;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -14,7 +14,7 @@ class ProjectsController extends Controller
      * @return json_encode
      */
     public function getAllProjects(){
-        $projects = Projects::paginate($this->page_length);
+        $projects = Project::paginate($this->page_length);
         return response()->json($projects);
     }
 
@@ -24,14 +24,13 @@ class ProjectsController extends Controller
         ]);
         $Project = new Project();
         $Project->title = $request->get('title');
-        $Project->notes = ' ';
         $Project->status = 0;
         if($Project->save()){
             $Projects = Project::paginate($this->page_length);
             return response()->json($Projects);
         }else{
-            $success = ['success'=>'false'];
-            return response()->json($success);
+            $error = ['error'=>'true'];
+            return response()->json($error);
         }
     }
     public function completeProject($Projectid){

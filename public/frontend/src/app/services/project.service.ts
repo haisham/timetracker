@@ -16,30 +16,48 @@ export class ProjectService {
   //retrieve all available events
   getProjects() {
     return this._http
-      .get("http://http://34.211.177.15/api/projects", {})
+      .get("http://34.211.177.15/api/projects", {})
       .map(res => res.json())
   }
 
-  //save user and eventually add user as participant for particular event
-  saveUser(userData) {
+  //save project
+  saveProject(projectData) {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .post('http://35.162.97.188/api/register-user', JSON.stringify(userData), { headers: headers })
+      .post('hhttp://34.211.177.15/api/register-user', JSON.stringify(projectData), { headers: headers })
       .map(res => res.json())
   }
 
-  //retrieve all the users registered for the focused event 
-  getRegistrationsOverview(Event) {
+  closeProject(projectData) {
+    var headers = new Headers();
+    headers.append('Content-type', 'application/json');
     return this._http
-      .get("http://35.162.97.188/api/registrations-overview/" + Event.id, {})
+      .post('hhttp://34.211.177.15/api/register-user', JSON.stringify(projectData), { headers: headers })
       .map(res => res.json())
   }
 
-  //optional in case of many events we may need to introduce pagination, in backend context laravel as a nice built in way to introduce pagination. 
-  getMoreEvents(id) {
+  openProject(projectData) {
+    var headers = new Headers();
+    headers.append('Content-type', 'application/json');
     return this._http
-      .get('/api/events?page=' + id)
+      .post('hhttp://34.211.177.15/api/register-user', JSON.stringify(projectData), { headers: headers })
+      .map(res => res.json())
+  }
+
+  updateProject(projectData) {
+    var headers = new Headers();
+    headers.append('Content-type', 'application/json');
+    return this._http
+      .post('hhttp://34.211.177.15/api/register-user', JSON.stringify(projectData), { headers: headers })
+      .map(res => res.json())
+  }
+
+  getMoreProjects(projectData) {
+    var headers = new Headers();
+    headers.append('Content-type', 'application/json');
+    return this._http
+      .post('hhttp://34.211.177.15/api/register-user', JSON.stringify(projectData), { headers: headers })
       .map(res => res.json())
   }
 
