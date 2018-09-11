@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProjectService } from './services/project.service';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -25,24 +25,36 @@ export class AppComponent {
   total_Project: number;
   per_page: number;
   selectedProject: string;
-
-
+  successMessage: boolean;
+  errorMessage: boolean;
+  successMessageText: string;
+  errorMessageText: string;
   disablePrev: boolean;
   disableNext: boolean;
   inputFocused: boolean;
   isInEdit: boolean;
   index: number;
+  formdata;
 
 
   constructor(private _ProjectService: ProjectService, private _modalService: NgbModal) {
-    this.onLoad();
     this.inputFocused = false;
     this.index = 0;
   }
 
 
-
-  onLoad() {
+  ngOnInit() {
+    this.formdata = new FormGroup({
+      title: new FormControl("", Validators.compose([
+        Validators.required,
+        Validators.minLength(2)
+      ]))
+    });
+    this.successMessage = false;
+    this.errorMessage = false;
+    this.getProjects();
+  }
+  getProjects() {
     var result = this._ProjectService.getProjects();
     result.subscribe((data) => {
       this.last_page = Array(data.last_page);
@@ -58,28 +70,40 @@ export class AppComponent {
 
   }
 
-  newProject() {
-    var result;
-    var newProject = {
-      id: this.id,
-      title: this.title,
-      status: 0
-    };
-    result = this._ProjectService.saveProject(newProject);
+
+
+  newProject(projectData) {
+    this.successMessage = false;
+    this.errorMessage = false;
+
+    let result = this._ProjectService.addProject(projectData);
     result.subscribe((data) => {
-      this.current_page = data.current_page;
-      this.Projects = data.data;
-      this.total_Project = this.total_Project + 1;
-      this.title = '';
-      this.validTitle = true;
-      this.last_page = Array(data.last_page);
-      this._last_page = data.last_page;
+      if (data.success === "true") {
+        this.successMessage = true;
+        this.successMessageText = "Project added!";
+        this.current_page = data.current_page;
+        this.Projects = data.data;
+        this.total_Project = this.total_Project + 1;
+        this.title = '';
+        this.validTitle = true;
+        this.last_page = Array(data.last_page);
+        this._last_page = data.last_page;
+        setTimeout(() => {
+          this.successMessageText = ""
+        }, 2000);
+      } else {
+        this.errorMessage = true;
+        this.errorMessageText = "Hov. der sket en fejl :(";
+      }
+
+
     },
       (errorData) => {
-        this.validTitle = false;
+        this.errorMessage = true;
+        this.errorMessageText = "Hov. der sket en fejl :(";
       });
-
   }
+
 
   closeProject(Project) {
     var result;

@@ -20,12 +20,12 @@ export class ProjectService {
       .map(res => res.json())
   }
 
-  //save project
-  saveProject(projectData) {
+  //add new project
+  addProject(projectData) {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .post('hhttp://34.211.177.15/api/register-user', JSON.stringify(projectData), { headers: headers })
+      .post('hhttp://34.211.177.15/api/add-project', JSON.stringify(projectData), { headers: headers })
       .map(res => res.json())
   }
 
