@@ -23,7 +23,7 @@
         <div>
           <ul class="list-group">
 
-            <li class="list-group-item" *ngFor="let Project of Projects" [style.text-decoration]="Project.status == 1 ? 'line-through' : ''">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let Project of Projects" [style.text-decoration]="Project.status == 1 ? 'line-through' : ''">
 
               <input type="text" [(ngModel)]="id" hidden>
               <input type="text" (keyup.enter)="updateProject(id)" class="custom-input" *ngIf="Project.id == index"
@@ -36,8 +36,7 @@
 
               <span *ngIf="Project.id !== index">{{Project.title}}</span>
 
-              <div *ngIf="Project.status !== 3" class="align-right">
-                <div *ngIf="Project.id !== index" class="btn-group" role="group" aria-label="...">
+                <div *ngIf="Project.id !== index" class="btn-group float-right" role="group" aria-label="...">
                   <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)"
                     class="btn btn-secondary"><i class="fa fa-comment"></i></button>
                   <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)"
@@ -48,7 +47,6 @@
                     class="btn btn-secondary"><i class="fa fa-edit"></i></button>
                   <button type="button" (click)="closeProject(Project)" class="btn btn-danger"> <i class="fa fa-remove"></i></button>
                 </div>
-              </div>
             </li>
           </ul>
 

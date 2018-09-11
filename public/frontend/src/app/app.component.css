@@ -1,3 +1,6 @@
 button {
     cursor: pointer;
 }
+.projectControls{
+    float: right!important;
+}
