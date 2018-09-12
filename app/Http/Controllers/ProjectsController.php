@@ -62,7 +62,7 @@ class ProjectsController extends Controller
 
         $projectId = $request->get('projectId');
         $startTime = $request->get('startTime');
-        $endTime = $request->get('endTime');
+        $stopTime = $request->get('stopTime');
 
         $Entry = new Entry();
         $Entry->project_id = $projectId;
