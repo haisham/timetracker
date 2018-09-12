@@ -71,7 +71,7 @@ class ProjectsController extends Controller
         $Entry->stop_time = $stopTime;
         $difference = date_diff( date_create($startTime), date_create($stopTime));
         $formattedDifference = $diff->format('%h:%i');
-        $Entry->diff = $formattedDifference
+        $Entry->diff = $formattedDifference;
         if($Entry->save()){
             $success = ['success'=>'true'];
             return response()->json($success);
