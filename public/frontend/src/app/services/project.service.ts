@@ -60,6 +60,13 @@ export class ProjectService {
       .map(res => res.json())
   }
 
+  //retrieve all entries
+  removeEntry(id) {
+    return this._http
+      .delete('http://34.211.177.15/api/entries/'+id, {})
+      .map(res => res.json())
+  }
+
   getMoreProjects(projectData) {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');

@@ -36,6 +36,15 @@ export class RegistrationsOverviewComponent implements OnInit {
 
   }
 
+  removeRegistration(id) {
+
+    var result = this._ProjectService.removeEntry(id);
+    result.subscribe((response) => {
+      this.getEntries();
+    });
+
+  }
+
   closeRegistrationsOverviewModal() {
     this.activeModal.close();
   }

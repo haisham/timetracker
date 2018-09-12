@@ -87,5 +87,12 @@ class ProjectsController extends Controller
                     ->where('id', $projectId)->get();
         return response()->json($entries);
     }
+
+    public function deleteEntry($entryId){
+        $Entry = Entry::destroy($entryId);
+        $success = ['success'=>'true'];
+        return response()->json($success);
+       
+    }
 }
 
