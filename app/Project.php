@@ -10,4 +10,9 @@ class Project extends Model
 
     protected $fillable = ['id', 'title', 'status'];
 
+    public function entries()
+    {
+        return $this->hasMany('App\Entry');
+    }
+
 }

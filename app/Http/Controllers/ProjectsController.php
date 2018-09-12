@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 use App\Project;
 use App\Entry;
 use Validator;
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 class ProjectsController extends Controller
@@ -36,6 +35,7 @@ class ProjectsController extends Controller
             return response()->json($error);
         }
     }
+
     public function closeProject($projectId){
         $Project = Project::find($projectId);
         $Project->status = 1;
@@ -47,6 +47,7 @@ class ProjectsController extends Controller
             return response()->json($success);
         }
     }
+
     public function openProject($projectId){
         $Project = Project::find($projectId);
         $Project->status = 0;
@@ -59,14 +60,10 @@ class ProjectsController extends Controller
         }
     }
   
-      public function addEntry(Request $request){
-
+    public function addEntry(Request $request){
         $projectId = $request->get('projectId');
-
-        $datetime = new DateTime();
-        $startTime = $datetime->createFromFormat('Y-m-d hh:mm:ss', $request->get('startTime'));
-        $stopTime = $datetime->createFromFormat('Y-m-d hh:mm:ss', $request->get('stopTime'));
-
+        $startTime = $request->get('startTime');
+        $stopTime = $request->get('stopTime');
 
         $Entry = new Entry();
         $Entry->project_id = $projectId;
@@ -79,6 +76,13 @@ class ProjectsController extends Controller
             $success = ['success'=>'false'];
             return response()->json($success);
         }
+    }
+
+    public function getEntries($projectId) {
+
+        $entries = Project::with('entries')
+                    ->where('project_id', $projectId)->get();
+        return response()->json($entries);
     }
 }
 

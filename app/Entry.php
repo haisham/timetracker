@@ -9,4 +9,10 @@ class Entry extends Model
     protected $table = "Entries";
 
     protected $fillable = ['id', 'project_id', 'start_time', 'end_time'];
+
+    public function newCollection(array $models = [])
+    {
+        return new EntryCollection($models);
+    }
+
 }

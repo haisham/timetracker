@@ -53,6 +53,13 @@ export class ProjectService {
       .map(res => res.json())
   }
 
+  //retrieve all entries
+  getEntries() {
+    return this._http
+      .get("http://34.211.177.15/api/projects", {})
+      .map(res => res.json())
+  }
+
   getMoreProjects(projectData) {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
