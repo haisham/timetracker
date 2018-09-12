@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title">Project Overview</h4>
+  <h4 class="modal-title">Register Time</h4>
   <button type="button" class="close" aria-label="Close" (click)="closeTimeRegistrationModal()">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -34,6 +34,12 @@
         <button type="button" (click)="addTime()" class="btn btn-secondary addButton"> <i class="fa fa-plus"></i></button>
       </div>
     </div>
+  </div>
+  <div *ngIf="successMessage" class="py-1">
+      <ngb-alert type="success" [dismissible]="false">{{ successMessageText }}</ngb-alert>
+    </div>
+    <div *ngIf="errorMessage" class="py-1">
+      <ngb-alert *ngIf="errorMessage" type="warning" [dismissible]="false">{{ errorMessageText }}</ngb-alert>
   </div>
 
   <ul class="list-group">

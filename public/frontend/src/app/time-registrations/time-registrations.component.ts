@@ -14,13 +14,19 @@ export class TimeRegistrationsComponent implements OnInit {
   startTime: NgbTimeStruct = { hour: 0, minute: 0, second: 0 };
   stopTime: NgbTimeStruct = { hour: 0, minute: 0, second: 0 };
   TimeRegistrations: any;
+  successMessage: boolean;
+  errorMessage: boolean;
+  successMessageText: string;
+  errorMessageText: string;
+
   @Input() Project;
   constructor(private _ProjectService: ProjectService, private activeModal: NgbActiveModal, private calendar: NgbCalendar) {
   }
 
   ngOnInit() {
     this.dateModel = this.calendar.getToday();
-    this.getEntries();
+    this.successMessage = false;
+    this.errorMessage = false;
   }
 
   addTime(Project) {
@@ -58,10 +64,12 @@ export class TimeRegistrationsComponent implements OnInit {
     }
     var result = this._ProjectService.getEntries(queryData);
     result.subscribe((response) => {
-      if (response.success === "true") {
-
-      }
-
+      this.successMessage = true;
+      this.successMessageText = "Time has been registered!";
+      setTimeout(() => {
+        this.activeModal.close();
+      }, 3000);
+      
     });
 
   }

@@ -6,11 +6,13 @@ import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { TimeRegistrationsComponent } from './time-registrations/time-registrations.component';
+import { RegistrationsOverviewComponent } from './registrations-overview/registrations-overview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimeRegistrationsComponent
+    TimeRegistrationsComponent,
+    RegistrationsOverviewComponent
   ],
   imports: [
     NgbModule.forRoot(),
