@@ -5,7 +5,7 @@ class EntryCollection extends Collection
 {
     public function threaded()
     {
-        $entries = parent::groupBy('post_id');
+        $entries = parent::groupBy('project_id');
         return $entries;
     }
 }
