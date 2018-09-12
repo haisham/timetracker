@@ -3,6 +3,7 @@ import { ProjectService } from './services/project.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { TimeRegistrationsComponent } from './time-registrations/time-registrations.component';
+import { RegistrationsOverviewComponent } from './registrations-overview/registrations-overview.component';
 
 
 
@@ -127,6 +128,11 @@ export class AppComponent {
   }
 
   openTimeRegistrations(Project) {
+    const modal =  this._modalService.open(TimeRegistrationsComponent);
+    modal.componentInstance.Project = Project;
+  }
+
+  openRegistrationsOverview(Project) {
     const modal =  this._modalService.open(TimeRegistrationsComponent);
     modal.componentInstance.Project = Project;
   }

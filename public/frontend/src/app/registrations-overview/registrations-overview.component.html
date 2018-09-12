@@ -1,3 +1,20 @@
-<p>
-  registrations-overview works!
-</p>
+<div class="modal-header">
+    <h4 class="modal-title">Overview</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeRegistrationsOverviewModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <ul class="list-group">
+  
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let TimeRegistration of TimeRegistrations">
+        <span>test</span>
+          <div class="btn-group float-right" role="group" aria-label="controls">
+            <button type="button" (click)="removeRegistration(TimeRegistration)"
+              class="btn btn-secondary"> <i class="fa fa-remove"></i></button>
+          </div>
+      </li>
+    </ul>
+   
+  </div>

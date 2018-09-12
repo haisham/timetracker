@@ -21,7 +21,7 @@ import { RegistrationsOverviewComponent } from './registrations-overview/registr
     HttpModule,
     ReactiveFormsModule
   ],
-  entryComponents: [TimeRegistrationsComponent],
+  entryComponents: [TimeRegistrationsComponent, RegistrationsOverviewComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

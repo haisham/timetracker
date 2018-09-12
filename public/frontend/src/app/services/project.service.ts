@@ -54,11 +54,9 @@ export class ProjectService {
   }
 
   //retrieve all entries
-  getEntries(queryData) {
-    var headers = new Headers();
-    headers.append('Content-type', 'application/json');
+  getEntries(projectId) {
     return this._http
-      .get('http://34.211.177.15/api/entries/'+queryData.projectId+'/'+queryData.date, JSON.stringify(queryData))
+      .get('http://34.211.177.15/api/entries/'+projectId, {})
       .map(res => res.json())
   }
 

@@ -31,6 +31,8 @@
               <span *ngIf="Project.id !== index">{{Project.title}}</span>
 
                 <div *ngIf="Project.id !== index" class="btn-group float-right" role="group" aria-label="controls">
+                  <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="openRegistrationsOverview(Project)"
+                    class="btn btn-secondary"><i class="fa fa-info"></i></button>
                   <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="openTimeRegistrations(Project)"
                     class="btn btn-secondary"><i class="fa fa-clock-o"></i></button>
                   <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)"

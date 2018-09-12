@@ -49,29 +49,17 @@ export class TimeRegistrationsComponent implements OnInit {
       }
       result = this._ProjectService.addEntry(entryData);
       result.subscribe((data) => {
+        this.successMessage = true;
+        this.successMessageText = "Time has been registered!";
+        setTimeout(() => {
+          this.activeModal.close();
+        }, 3000);
 
       });
     }
   }
   private pad(i: number): string {
     return i < 10 ? `0${i}` : `${i}`;
-  }
-
-  getEntries() {
-    let queryData = {
-      projectId: this.Project.id,
-      date: this.dateModel.year + '-' + this.dateModel.month + '-' + this.dateModel.day
-    }
-    var result = this._ProjectService.getEntries(queryData);
-    result.subscribe((response) => {
-      this.successMessage = true;
-      this.successMessageText = "Time has been registered!";
-      setTimeout(() => {
-        this.activeModal.close();
-      }, 3000);
-      
-    });
-
   }
 
   closeTimeRegistrationModal() {

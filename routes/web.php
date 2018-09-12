@@ -19,6 +19,6 @@ Route::get('/api/projects', 'ProjectsController@getAllProjects');
 Route::post('/api/add-project', 'ProjectsController@addProject');
 Route::put('/api/close-project/{id}', 'ProjectsController@closeProject');
 Route::put('/api/open-project/{id}', 'ProjectsController@openProject');
-Route::get('/api/entries/{id}/{date}', 'ProjectsController@getEntries');
+Route::get('/api/entries/{id}/', 'ProjectsController@getEntries');
 Route::post('/api/add-entry','ProjectsController@addEntry');
 Route::delete('/api/entry/{id}','ProjectsController@deleteEntry');
