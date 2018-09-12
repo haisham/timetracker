@@ -117,33 +117,20 @@ export class AppComponent {
 
   }
 
+  openProject(Project) {
+    var result;
+    result = this._ProjectService.closeProject(Project);
+    result.subscribe((data) => {
+      Project.status = 0;
+    });
+
+  }
+
   openTimeRegistrations(Project) {
     const modal =  this._modalService.open(TimeRegistrationsComponent);
     modal.componentInstance.Project = Project;
   }
 
-  updateProject(id) {
-    var Project = {
-      id: this.id,
-      title: this.selectedProject
-    };
-    var result = this._ProjectService.updateProject(Project);
-    result.subscribe((data) => {
-      this.Projects.forEach(element => {
-        if (element.id == id) {
-          element.title = Project.title;
-          this.index = 0;
-        }
-      });
-    },
-      (errorData) => {
-        this.index = id;
-        this.isInEdit = true;
-      });
-
-    this.index = 0;
-
-  }
 
 
   pageNumber(_number) {

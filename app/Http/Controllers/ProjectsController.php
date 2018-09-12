@@ -45,22 +45,12 @@ class ProjectsController extends Controller
             return response()->json($success);
         }
     }
-    public function incompleteProject($id){
-        $Project = Project::find($id);
+    public function openProject($Projectid){
+        $Project = Project::find($Projectid);
         $Project->status = 0;
         if($Project->save()){
             $success = ['success'=>'true'];
             return response()->json($success);
-        }else{
-            $success = ['success'=>'false'];
-            return response()->json($success);
-        }
-    }
-    public function deleteProject($Projectid){
-        $Project = Project::destroy($Projectid);
-        $Projects = Project::paginate($this->page_length);
-        if($Project){
-            return response()->json($Projects);
         }else{
             $success = ['success'=>'false'];
             return response()->json($success);

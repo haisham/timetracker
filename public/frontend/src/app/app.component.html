@@ -28,25 +28,15 @@
 
             <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let Project of Projects" [style.text-decoration]="Project.status == 1 ? 'line-through' : ''">
 
-              <input type="text" [(ngModel)]="id" hidden>
-              <input type="text" (keyup.enter)="updateProject(id)" class="custom-input" *ngIf="Project.id == index"
-                [(ngModel)]="selectedProject">
-              <span *ngIf="Project.id === index && isInEdit">This title is not unique</span>
-              <div *ngIf="Project.id === index" class="align-right" role="group" aria-label="...">
-                <button type="button" (click)="updateProject(id)" class="btn btn-secondary"> <i class="fa fa-save"></i></button>
-              </div>
-
-
               <span *ngIf="Project.id !== index">{{Project.title}}</span>
 
-                <div *ngIf="Project.id !== index" class="btn-group float-right" role="group" aria-label="...">
+                <div *ngIf="Project.id !== index" class="btn-group float-right" role="group" aria-label="controls">
                   <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="openTimeRegistrations(Project)"
                     class="btn btn-secondary"><i class="fa fa-clock-o"></i></button>
                   <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)"
                     class="btn btn-secondary"><i class="fa fa-check"></i> </button>
                   <button type="button" [style.display]="Project.status == 0 ? 'none' : '' " (click)="openProject(Project)"
                     class="btn btn-secondary"> <i class="fa fa-refresh"></i></button>
-                  <button type="button" (click)="closeProject(Project)" class="btn btn-danger"> <i class="fa fa-remove"></i></button>
                 </div>
             </li>
           </ul>
