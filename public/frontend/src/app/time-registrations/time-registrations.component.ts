@@ -20,6 +20,7 @@ export class TimeRegistrationsComponent implements OnInit {
 
   ngOnInit() {
     this.dateModel = this.calendar.getToday();
+    this.getEntries();
   }
 
   addTime(Project) {
@@ -53,7 +54,7 @@ export class TimeRegistrationsComponent implements OnInit {
   getEntries() {
     let queryData = {
       projectId: this.Project.id,
-      date: this.dateModel
+      date: this.dateModel.year + '-' + this.dateModel.month + '-' + this.dateModel.day
     }
     var result = this._ProjectService.getEntries(queryData);
     result.subscribe((response) => {

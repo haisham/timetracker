@@ -81,7 +81,7 @@ class ProjectsController extends Controller
     public function getEntries($projectId, $date) {
 
         $entries = Project::with('entries')
-                    ->where('project_id', $projectId)->get();
+                    ->where('id', $projectId)->get();
         return response()->json($entries);
     }
 }
