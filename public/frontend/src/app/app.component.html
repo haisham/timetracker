@@ -12,10 +12,13 @@
           <div class="col-sm-4"><input class="btn btn-primary" type="submit" [disabled]="!formdata.valid" value="Add" /></div>
         </div>
       </form>
-      <div class="py-2">
-        <ngb-alert *ngIf="successMessage" type="success" [dismissible]="false">{{ successMessageText }}</ngb-alert>
+      <div *ngIf="successMessage" class="py-1">
+        <ngb-alert type="success" [dismissible]="false">{{ successMessageText }}</ngb-alert>
+      </div>
+      <div *ngIf="errorMessage" class="py-1">
         <ngb-alert *ngIf="errorMessage" type="warning" [dismissible]="false">{{ errorMessageText }}</ngb-alert>
       </div>
+        
       <hr>
       <div *ngIf="Projects && Projects.length > 0">
         <h2>{{mainTitle}}</h2>
@@ -37,14 +40,12 @@
               <span *ngIf="Project.id !== index">{{Project.title}}</span>
 
                 <div *ngIf="Project.id !== index" class="btn-group float-right" role="group" aria-label="...">
-                  <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)"
-                    class="btn btn-secondary"><i class="fa fa-comment"></i></button>
+                  <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="openTimeRegistrations(Project)"
+                    class="btn btn-secondary"><i class="fa fa-clock-o"></i></button>
                   <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="closeProject(Project)"
                     class="btn btn-secondary"><i class="fa fa-check"></i> </button>
                   <button type="button" [style.display]="Project.status == 0 ? 'none' : '' " (click)="openProject(Project)"
                     class="btn btn-secondary"> <i class="fa fa-refresh"></i></button>
-                  <button type="button" [style.display]="Project.status == 1 ? 'none' : '' " (click)="editProject(Project)"
-                    class="btn btn-secondary"><i class="fa fa-edit"></i></button>
                   <button type="button" (click)="closeProject(Project)" class="btn btn-danger"> <i class="fa fa-remove"></i></button>
                 </div>
             </li>

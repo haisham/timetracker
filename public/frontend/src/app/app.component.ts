@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ProjectService } from './services/project.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { TimeRegistrationsComponent } from './time-registrations/time-registrations.component';
 
 
 
@@ -92,7 +93,7 @@ export class AppComponent {
         setTimeout(() => {
           this.successMessageText = "";
           this.successMessage = false;
-        }, 2000);
+        }, 3000);
       } else {
         this.errorMessage = true;
         this.errorMessageText = "Hov. der sket en fejl :(";
@@ -116,12 +117,9 @@ export class AppComponent {
 
   }
 
-  openProject(Project) {
-    var result;
-    result = this._ProjectService.openProject(Project);
-    result.subscribe((data) => {
-      Project.status = 0;
-    });
+  openTimeRegistrations(Project) {
+    const modal =  this._modalService.open(TimeRegistrationsComponent);
+    modal.componentInstance.Project = Project;
   }
 
   updateProject(id) {

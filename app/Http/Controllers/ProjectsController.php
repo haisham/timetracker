@@ -34,7 +34,7 @@ class ProjectsController extends Controller
             return response()->json($error);
         }
     }
-    public function completeProject($Projectid){
+    public function closeProject($Projectid){
         $Project = Project::find($Projectid);
         $Project->status = 1;
         if($Project->save()){

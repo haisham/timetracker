@@ -33,7 +33,7 @@ export class ProjectService {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .post('hhttp://34.211.177.15/api/register-user', JSON.stringify(projectData), { headers: headers })
+      .put('hhttp://34.211.177.15/api/close-project', JSON.stringify(projectData), { headers: headers })
       .map(res => res.json())
   }
 
