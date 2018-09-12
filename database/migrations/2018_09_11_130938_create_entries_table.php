@@ -18,6 +18,7 @@ class CreateEntriesTable extends Migration
             $table->integer('project_id');
             $table->dateTime('start_time');
             $table->dateTime('stop_time');
+            $table->dateTime('diff');
             $table->timestamps();
         });
     }

@@ -15,13 +15,14 @@ export class RegistrationsOverviewComponent implements OnInit {
   errorMessage: boolean;
   successMessageText: string;
   errorMessageText: string;
+  TimeRegistrations: any;
 
   @Input() Project;
   constructor(private _ProjectService: ProjectService, private activeModal: NgbActiveModal) {
   }
 
   ngOnInit() {
-
+    this.getEntries();
   }
 
 
@@ -29,6 +30,7 @@ export class RegistrationsOverviewComponent implements OnInit {
 
     var result = this._ProjectService.getEntries(this.Project.id);
     result.subscribe((response) => {
+      this.TimeRegistrations = response[0].entries;
 
     });
 

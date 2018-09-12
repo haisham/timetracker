@@ -133,7 +133,7 @@ export class AppComponent {
   }
 
   openRegistrationsOverview(Project) {
-    const modal =  this._modalService.open(TimeRegistrationsComponent);
+    const modal =  this._modalService.open(RegistrationsOverviewComponent);
     modal.componentInstance.Project = Project;
   }
 
