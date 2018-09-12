@@ -16,5 +16,35 @@
       </div>
     </div>
   </form>
+  <div>
+    
+  </div>
+
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-sm">
+        Start time:
+        <ngb-timepicker [(ngModel)]="startTime"></ngb-timepicker>
+      </div>
+      <div class="col-sm">
+        End time:
+        <ngb-timepicker [(ngModel)]="stopTime"></ngb-timepicker>
+      </div>
+      <div class="col-sm">
+        <button type="button" (click)="addTime()" class="btn btn-secondary addButton"> <i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <ul class="list-group">
+
+    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let TimeRegistration of TimeRegistrations">
+      <span>{{TimeRegistration.totalHours}}</span>
+        <div class="btn-group float-right" role="group" aria-label="controls">
+          <button type="button" (click)="removeRegistration(TimeRegistration)"
+            class="btn btn-secondary"> <i class="fa fa-remove"></i></button>
+        </div>
+    </li>
+  </ul>
  
 </div>

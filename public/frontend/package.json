@@ -22,6 +22,7 @@
     "@angular/router": "~6.0.9",
     "@ng-bootstrap/ng-bootstrap": "^3.2.0",
     "@schematics/angular": "^0.8.1",
+    "angular-number-picker": "^2.2.0",
     "angular-sweetalert-service": "^2.0.2",
     "angular2-focus": "^1.1.2",
     "core-js": "2.5.7",

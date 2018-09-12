@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTimeRegistrationsTable extends Migration
+class CreateEntriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTimeRegistrationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Time-registrations', function (Blueprint $table) {
+        Schema::create('Entries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id');
             $table->dateTime('start_time');
@@ -28,6 +28,6 @@ class CreateTimeRegistrationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Time-registrations');
+        Schema::dropIfExists('Entries');
     }
 }

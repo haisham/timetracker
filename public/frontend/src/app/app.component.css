@@ -4,3 +4,6 @@ button {
 .projectControls{
     float: right!important;
 }
+.btn {
+    border-radius:0!important;
+}

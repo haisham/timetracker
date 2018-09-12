@@ -33,7 +33,7 @@ export class ProjectService {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .put('http://34.211.177.15/api/close-project/'+projectData.id, JSON.stringify(projectData), { headers: headers })
+      .put('http://34.211.177.15/api/close-project/'+projectData.id, {}, { headers: headers })
       .map(res => res.json())
   }
 
@@ -41,15 +41,15 @@ export class ProjectService {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .post('http://34.211.177.15/api/open-project'+projectData.id, JSON.stringify(projectData), { headers: headers })
+      .put('http://34.211.177.15/api/open-project/'+projectData.id, {}, { headers: headers })
       .map(res => res.json())
   }
 
-  updateProject(projectData) {
+  addEntry(entryData) {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .post('http://34.211.177.15/api/register-user', JSON.stringify(projectData), { headers: headers })
+      .post('http://34.211.177.15/api/add-entry', JSON.stringify(entryData), { headers: headers })
       .map(res => res.json())
   }
 

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Project;
+use App\Entry;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -34,8 +35,8 @@ class ProjectsController extends Controller
             return response()->json($error);
         }
     }
-    public function closeProject($Projectid){
-        $Project = Project::find($Projectid);
+    public function closeProject($projectId){
+        $Project = Project::find($projectId);
         $Project->status = 1;
         if($Project->save()){
             $success = ['success'=>'true'];
@@ -45,8 +46,8 @@ class ProjectsController extends Controller
             return response()->json($success);
         }
     }
-    public function openProject($Projectid){
-        $Project = Project::find($Projectid);
+    public function openProject($projectId){
+        $Project = Project::find($projectId);
         $Project->status = 0;
         if($Project->save()){
             $success = ['success'=>'true'];
@@ -56,28 +57,20 @@ class ProjectsController extends Controller
             return response()->json($success);
         }
     }
-    public function updateProject($Projectid,Request $request){
-        $this->validate($request,[
-            'title' => 'required|unique:Projects,id|max:40'.$Projectid,
-        ]);
-        $Project = Project::find($Projectid);
-        $Project->title = $request->get('title');
-        $Project->status = 0;
-        if($Project->save()){
-            return response()->json($Project);
-        }else{
-            $success = ['success'=>'false'];
+  
+      public function addEntry(Request $request){
+
+        $projectId = $request->get('projectId');
+        $startTime = $request->get('startTime');
+        $endTime = $request->get('endTime');
+
+        $Entry = new Entry();
+        $Entry->project_id = $projectId;
+        $Entry->start_time = $startTime;
+        $Entry->stop_time = $stopTime;
+        if($Entry->save()){
+            $success = ['success'=>'true'];
             return response()->json($success);
-        }
-    }
-    
-    
-      public function saveNote($Projectid,Request $request){
-        $Project = Project::find($Projectid);
-        $Project->notes = $request->get('notes');
-        $Project->status = 0;
-        if($Project->save()){
-            return response()->json($Project);
         }else{
             $success = ['success'=>'false'];
             return response()->json($success);

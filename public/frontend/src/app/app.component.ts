@@ -119,7 +119,7 @@ export class AppComponent {
 
   openProject(Project) {
     var result;
-    result = this._ProjectService.closeProject(Project);
+    result = this._ProjectService.openProject(Project);
     result.subscribe((data) => {
       Project.status = 0;
     });
