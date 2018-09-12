@@ -61,8 +61,11 @@ class ProjectsController extends Controller
       public function addEntry(Request $request){
 
         $projectId = $request->get('projectId');
-        $startTime = $request->get('startTime');
-        $stopTime = $request->get('stopTime');
+
+        $datetime = new DateTime();
+        $startTime = $datetime->createFromFormat('Y-m-d hh:mm:ss', $request->get('startTime'));
+        $stopTime = $datetime->createFromFormat('Y-m-d hh:mm:ss', $request->get('stopTime'));
+
 
         $Entry = new Entry();
         $Entry->project_id = $projectId;
