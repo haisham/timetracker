@@ -69,7 +69,7 @@ class ProjectsController extends Controller
         $Entry->project_id = $projectId;
         $Entry->start_time = $startTime;
         $Entry->stop_time = $stopTime;
-        $Entry->diff = date_diff( $startTime, $stopTime );
+        $Entry->diff = date_diff( date_create($startTime), date_create($stopTime));
         if($Entry->save()){
             $success = ['success'=>'true'];
             return response()->json($success);
