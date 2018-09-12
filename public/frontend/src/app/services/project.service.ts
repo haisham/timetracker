@@ -63,7 +63,7 @@ export class ProjectService {
   //retrieve all entries
   removeEntry(id) {
     return this._http
-      .delete('http://34.211.177.15/api/entries/'+id, {})
+      .delete('http://34.211.177.15/api/entry/'+id, {})
       .map(res => res.json())
   }
 

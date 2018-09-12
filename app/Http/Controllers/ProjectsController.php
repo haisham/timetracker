@@ -88,7 +88,7 @@ class ProjectsController extends Controller
         return response()->json($entries);
     }
 
-    public function deleteEntry($entryId){
+    public function deleteEntry($entryId) {
         $Entry = Entry::destroy($entryId);
         $success = ['success'=>'true'];
         return response()->json($success);
