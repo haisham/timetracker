@@ -51,17 +51,14 @@ export class TimeRegistrationsComponent implements OnInit {
   }
 
   getEntries() {
-    var result = this._ProjectService.getEntries();
+    let queryData = {
+      projectId: this.Project.id,
+      date: this.dateModel
+    }
+    var result = this._ProjectService.getEntries(queryData);
     result.subscribe((response) => {
       if (response.success === "true") {
-        this.last_page = Array(response.projects.last_page);
-        this._last_page = response.projects.last_page;
-        this.current_page = response.projects.current_page;
-        this.per_page = response.projects.per_page;
-        this.Projects = response.projects.data;
-        this.disableNext = true;
-        this.disablePrev = false;
-        this.total_Project = response.projects.total;
+
       }
 
     });
