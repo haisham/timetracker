@@ -1,5 +1,6 @@
 
 # Time tracker application
+Author Haisham Saeed <br/>
 using Angular6/PHP-Laravel 
 
 Server requirement:
