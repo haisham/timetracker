@@ -40,13 +40,13 @@ CORS middlewere was added in app/Http/Middleware/Cors.php, For security reason r
 
 <h2>API calls</h2>
 
-get /api/projects : Retrieve all projects<br/>
-post /api/add-project : Add new project<br/>
-put /api/close-project/{projectid} : Close a particular project<br/>
-put /api/open-project/{projectid} : Reopen a particular project<br/>
-get /api/entries/{projectid}/ : Get all time registration entries for a project<br/>
-post /api/add-entry : Add a new time registration entry for project<br/>
-delete /api/entry/{entryid} : Delete an entry<br/>
+GET /api/projects : Retrieve all projects<br/>
+POST /api/add-project : Add new project<br/>
+PUT /api/close-project/{projectid} : Close a particular project<br/>
+PUT /api/open-project/{projectid} : Reopen a particular project<br/>
+PUT /api/entries/{projectid}/ : Get all time registration entries for a project<br/>
+PUT /api/add-entry : Add a new time registration entry for project<br/>
+DELETE /api/entry/{entryid} : Delete an entry<br/>
 
 
 
