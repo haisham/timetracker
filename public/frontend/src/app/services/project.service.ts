@@ -16,7 +16,7 @@ export class ProjectService {
   //retrieve all available events
   getProjects() {
     return this._http
-      .get("http://34.211.177.15/api/projects", {})
+      .get("http://54.184.124.76/api/projects", {})
       .map(res => res.json())
   }
 
@@ -25,7 +25,7 @@ export class ProjectService {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .post('http://34.211.177.15/api/add-project', JSON.stringify(projectData), { headers: headers })
+      .post('http://54.184.124.76/api/add-project', JSON.stringify(projectData), { headers: headers })
       .map(res => res.json())
   }
 
@@ -33,7 +33,7 @@ export class ProjectService {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .put('http://34.211.177.15/api/close-project/'+projectData.id, {}, { headers: headers })
+      .put('http://54.184.124.76/api/close-project/'+projectData.id, {}, { headers: headers })
       .map(res => res.json())
   }
 
@@ -41,7 +41,7 @@ export class ProjectService {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .put('http://34.211.177.15/api/open-project/'+projectData.id, {}, { headers: headers })
+      .put('http://54.184.124.76/api/open-project/'+projectData.id, {}, { headers: headers })
       .map(res => res.json())
   }
 
@@ -49,21 +49,21 @@ export class ProjectService {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .post('http://34.211.177.15/api/add-entry', JSON.stringify(entryData), { headers: headers })
+      .post('http://54.184.124.76/api/add-entry', JSON.stringify(entryData), { headers: headers })
       .map(res => res.json())
   }
 
   //retrieve all entries
   getEntries(projectId) {
     return this._http
-      .get('http://34.211.177.15/api/entries/'+projectId, {})
+      .get('http://54.184.124.76/api/entries/'+projectId, {})
       .map(res => res.json())
   }
 
   //retrieve all entries
   removeEntry(id) {
     return this._http
-      .delete('http://34.211.177.15/api/entry/'+id, {})
+      .delete('http://54.184.124.76/api/entry/'+id, {})
       .map(res => res.json())
   }
 
@@ -71,7 +71,7 @@ export class ProjectService {
     var headers = new Headers();
     headers.append('Content-type', 'application/json');
     return this._http
-      .post('http://34.211.177.15/api/register-user', JSON.stringify(projectData), { headers: headers })
+      .post('http://54.184.124.76/api/register-user', JSON.stringify(projectData), { headers: headers })
       .map(res => res.json())
   }
 
