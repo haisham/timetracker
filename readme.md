@@ -1,27 +1,58 @@
-# Laravel PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+# Time tracker application
+using Angular6/PHP-Laravel 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Server requirement:
+PHP 7
+Laravel min. 5.3<br/>
+Nodejs CLI <br/>
+NPM CLI<br/>
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+<h1>Setup API Server:</h1>
+Laravel PHP framework<br/>
+<b>Installation instructions:</b><br/>
+Clone directory "Laravel backend" onto the server, 
+update config/database.php with database authentication info<br/>
+Run following commands using artisan console<br/>
+php artisan migrate (this will create tables required in db)<br/>
+php artisan clear-compiled<br/> 
+composer dump-autoload<br/>
+php artisan optimize<br/>
+<br/>
 
-## Official Documentation
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+<h1>Frontend (Angular 6):</h1>
+<b>Installation instructions:</b><br/>
+in nodejs cli run: 
+npm install<br/>
+ng serve
 
-## Contributing
+Nodejs CLI version 6.5.0 or up
+Angular CLI 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
+<h1>Backend structure</h1>
+Routes are defined in routes/web.php<br/>
+Controller is defined in app/Http/Controllers/EventController.php<br/>
+CORS middlewere was added in app/Http/Middleware/Cors.php, For security reason remove this in production env.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-## License
+<h2>API calls</h2>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+get /api/projects : Retrieve all projects<br/>
+post /api/add-project : Add new project<br/>
+put /api/close-project/{projectid} : Close a particular project<br/>
+put /api/open-project/{projectid} : Reopen a particular project<br/>
+get /api/entries/{projectid}/ : Get all time registration entries for a project<br/>
+post /api/add-entry : Add a new time registration entry for project<br/>
+delete /api/entry/{entryid} : Delete an entry<br/>
+
+
+
+<h1>Frontend app structure</h1>
+App Component : app/public/frontend/src/app/app.component.ts<br/>
+Services are added in Angular app/public/frontend/src/app/services/projects.service.ts<br/>
+/<br/>
+
+
+<a href="http://54.184.124.76/frontend/timetracker/" target=_blank><b>Live demo</b></a>
