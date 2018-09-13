@@ -26,6 +26,7 @@
     "angular-sweetalert-service": "^2.0.2",
     "angular2-focus": "^1.1.2",
     "core-js": "2.5.7",
+    "moment": "^2.22.2",
     "rxjs": "^6.2.2",
     "rxjs-compat": "^6.2.2",
     "ts-helpers": "1.1.2",
